@@ -4,7 +4,7 @@ pipeline {
       environment {
           DOCKER_HUB_USERNAME = 'rihab23'
           SCANNER_HOME = tool 'SonarScanner'
-           APP_NAME = "devsecopsapplication"
+           APP_NAME = "devsecops-pipeline"
           RELEASE = "1.0.0"
           DOCKER_USER = "rihab23"
           DOCKER_PASS = 'dockerhub'
@@ -43,7 +43,23 @@ pipeline {
             }
 
         }
- stage("Build & Push Docker Image") {
+
+         stage("Sonarqube Analysis "){
+            steps{
+                withSonarQubeEnv('SonarServer') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=java-devsecops-test\
+                    -Dsonar.projectKey=java-devsecops-test '''
+
+                }
+            }
+        }
+        stage("Quality Gate "){
+            steps{
+
+                   waitForQualityGate abortPipeline: false, credentialsId: 'javaid'
+            }
+        }
+        stage("Build & Push Docker Image") {
             steps {
                 script {
                     docker.withRegistry('',DOCKER_PASS) {
@@ -57,13 +73,15 @@ pipeline {
                 }
             }
          }
-          stage('Deploy to k8s'){
-            steps{
-                script{
-                    kubernetesDeploy (configs: 'deploymentservice.yaml', kubeconfigId: 'kid')
+        stage("trivy scanne ") {
+            steps {
+                script {
+
+                        sh ('trivy image ${DOCKER_HUB_USERNAME}/devsecops-java-project:latest')
 
                 }
             }
+
         }
     }
 }
