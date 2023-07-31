@@ -4,7 +4,7 @@ pipeline {
       environment {
           DOCKER_HUB_USERNAME = 'rihab23'
           SCANNER_HOME = tool 'SonarScanner'
-           APP_NAME = "devsecops-pipeline"
+           APP_NAME = "devsecopsapplication"
           RELEASE = "1.0.0"
           DOCKER_USER = "rihab23"
           DOCKER_PASS = 'dockerhub'
