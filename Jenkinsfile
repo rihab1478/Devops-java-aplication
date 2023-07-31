@@ -4,7 +4,7 @@ pipeline {
       environment {
           DOCKER_HUB_USERNAME = 'rihab23'
           SCANNER_HOME = tool 'SonarScanner'
-           APP_NAME = "devsecops-pipeline"
+           APP_NAME = "devsecopsapplication"
           RELEASE = "1.0.0"
           DOCKER_USER = "rihab23"
           DOCKER_PASS = 'dockerhub'
@@ -43,7 +43,20 @@ pipeline {
             }
 
         }
+ stage("Build & Push Docker Image") {
+            steps {
+                script {
+                    docker.withRegistry('',DOCKER_PASS) {
+                        docker_image = docker.build "${IMAGE_NAME}"
+                    }
 
+                    docker.withRegistry('',DOCKER_PASS) {
+                        docker_image.push("${IMAGE_TAG}")
+                        docker_image.push('latest')
+                    }
+                }
+            }
+         }
           stage('Deploy to k8s'){
             steps{
                 script{
