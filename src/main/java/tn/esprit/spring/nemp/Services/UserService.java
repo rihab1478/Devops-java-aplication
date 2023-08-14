@@ -1,12 +1,15 @@
 package tn.esprit.spring.nemp.Services;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.spring.nemp.Entities.User;
+import tn.esprit.spring.nemp.Excceptions.BadRequestException;
 import tn.esprit.spring.nemp.Interfaces.UserInterface;
 import tn.esprit.spring.nemp.Repositorys.UserRepository;
 
 import java.util.List;
+@AllArgsConstructor
 @Service
 public class UserService implements UserInterface {
 
@@ -15,6 +18,7 @@ public class UserService implements UserInterface {
 
     @Override
     public List<User> getAllUsers() {
+
         return (List<User>) this.userRepository.findAll();    }
 
     @Override
@@ -24,6 +28,12 @@ public class UserService implements UserInterface {
 
     @Override
     public User createUser(User user) {
+        Boolean existsEmail = userRepository.selectExistsEmail(user.getAdress());
+        if(existsEmail)
+        {
+            throw new BadRequestException("Email" + user.getAdress()+ "taken");
+        }
+
         return userRepository.save(user);
     }
 

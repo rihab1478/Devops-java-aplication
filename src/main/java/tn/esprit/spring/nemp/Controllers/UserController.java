@@ -41,8 +41,4 @@ public class UserController {
         return "user deleted succefully";
     }
 
-
-
-
-
 }
