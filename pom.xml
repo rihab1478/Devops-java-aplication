@@ -67,9 +67,10 @@
                 <version>3.1</version>
                 <configuration>
                     <fork>true</fork>
-                    <executable>C:\Program Files\Java\jdk1.8.0_202\bin\javac.exe</executable>
+                    <executable>javac</executable>
                 </configuration>
             </plugin>
+
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
