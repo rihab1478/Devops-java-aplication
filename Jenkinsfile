@@ -40,6 +40,7 @@ pipeline {
         stage("Test Application"){
             steps {
                 sh "mvn test"
+                sh "ls -R target/surefire-reports"
             }
             post{
                 always{
@@ -48,6 +49,8 @@ pipeline {
             }
 
         }
+
+
 
 
     }
