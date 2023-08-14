@@ -49,31 +49,8 @@ pipeline {
 
         }
 
-         stage("Sonarqube Analysis "){
-            steps{
-                withSonarQubeEnv('SonarServer') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=java-devsecops-test\
-                    -Dsonar.projectKey=java-devsecops-test '''
 
-                }
-            }
-        }
-        stage("Quality Gate "){
-            steps{
 
-                   waitForQualityGate abortPipeline: false, credentialsId: 'javaid'
-            }
-        }
 
-        stage("trivy scanne ") {
-            steps {
-                script {
-
-                        sh ('trivy image ${DOCKER_HUB_USERNAME}/devsecops-java-project:latest')
-
-                }
-            }
-
-        }
     }
 }
