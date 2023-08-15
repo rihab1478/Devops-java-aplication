@@ -40,5 +40,11 @@ public class UserController {
         userService.deleteUser(id);
         return "user deleted succefully";
     }
+    @GetMapping("/index")
+    public  String index()
+
+    {
+        return "welcome to my Devsecops application ";
+    }
 
 }
