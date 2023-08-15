@@ -54,11 +54,9 @@ pipeline {
 
     }
        post {
-            failure {
+            always{
                emailext body: 'hhellloo', subject: 'this is test', to: 'applicationtest40@gmail.com'
                 }
-             success {
-               emailext body: 'hhellloo', subject: 'this is test', to: 'applicationtest40@gmail.com'
-              }
+
         }
 }
