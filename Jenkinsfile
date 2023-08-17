@@ -82,12 +82,26 @@ pipeline {
                                     }
                                 }
                              }
+                             stage("Run Dockerized Application") {
+                                         steps {
+                                             script {
+                                                 docker.image("${IMAGE_NAME}:${IMAGE_TAG}").pull()
+
+                                                 def appContainer = docker.container("${IMAGE_NAME}:${IMAGE_TAG}").run("-p 8072:8072")
+
+                                                 sleep(time: 60, unit: 'SECONDS')
+
+                                                 sh("xdg-open http://localhost:8072/api/users/index")
+
+                                                 appContainer.stop()
+                                                 appContainer.remove()
+                                             }
+                                         }
+                                     }
                                      stage("trivy scanne ") {
                                          steps {
                                              script {
-
-                                                     sh ('trivy image ${DOCKER_HUB_USERNAME}/devsecops-java-project:latest')
-
+                                                     sh "trivy image ${DOCKER_HUB_USERNAME}/devsecops-java-project:latest"
                                              }
                                          }
 
