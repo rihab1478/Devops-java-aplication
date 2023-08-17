@@ -103,7 +103,7 @@ pipeline {
                                      stage("trivy scanne ") {
                                          steps {
                                              script {
-                                                     sh "trivy image ${DOCKER_HUB_USERNAME}/devsecops-java-project:latest"
+                                                     sh 'trivy image ${DOCKER_HUB_USERNAME}/devsecops-java-project:latest'
                                              }
                                          }
 
