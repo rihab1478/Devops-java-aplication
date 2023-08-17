@@ -52,7 +52,7 @@ pipeline {
 
         }
 
-    }
+
     stage("Sonarqube Analysis "){
                 steps{
                     withSonarQubeEnv('SonarServer') {
@@ -80,6 +80,7 @@ pipeline {
                                             docker_image.push('latest')
                                         }
                                     }
+                                }
                                 }
                              stage("Run Dockerized Application") {
                                          steps {
