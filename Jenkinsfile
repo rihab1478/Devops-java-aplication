@@ -81,7 +81,6 @@ pipeline {
                                         }
                                     }
                                 }
-                             }
                              stage("Run Dockerized Application") {
                                          steps {
                                              script {
