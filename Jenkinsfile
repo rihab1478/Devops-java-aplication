@@ -106,6 +106,7 @@ pipeline {
                                          }
 
                                      }
+                                     }
        post {
             failure {
                 emailext body: '''${SCRIPT, template="groovy-html.template"}''',
@@ -118,5 +119,4 @@ pipeline {
                         mimeType: 'text/html',to: "applicationtest40@gmail.com"
               }
         }
-}
 }
