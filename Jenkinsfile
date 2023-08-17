@@ -68,8 +68,8 @@ pipeline {
                                waitForQualityGate abortPipeline: false, credentialsId: 'javaid'
                         }
                     }
-                     stage("Build & Push Docker Image") {
-                                steps {
+            stage("Build & Push Docker Image") {
+                         steps {
                                     script {
                                         docker.withRegistry('',DOCKER_PASS) {
                                             docker_image = docker.build "${IMAGE_NAME}"
@@ -118,4 +118,5 @@ pipeline {
                         mimeType: 'text/html',to: "applicationtest40@gmail.com"
               }
         }
+}
 }
