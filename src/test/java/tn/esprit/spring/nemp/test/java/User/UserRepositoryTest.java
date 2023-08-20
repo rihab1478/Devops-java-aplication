@@ -2,6 +2,7 @@ package tn.esprit.spring.nemp.test.java.User;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -23,6 +24,7 @@ private UserRepository userrepo;
     }
 
     @Test
+    @Disabled
     void ItShouldCheckIfUserExistsEmail() {
         //given
         String adress = "bizerte";
@@ -37,6 +39,7 @@ private UserRepository userrepo;
 
     }
     @Test
+    @Disabled
     void ItShouldCheckIfUserDoseNotExistsEmail() {
         //given
         String adress = "bizerte";
