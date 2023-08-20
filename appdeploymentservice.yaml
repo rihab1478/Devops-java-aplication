@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: devsecopsapplication
-          image: devsecopsapplication:latest
+          image: rihab23/devsecopsapplication:latest
           ports:
             - containerPort: 8080
           env:   # Setting Enviornmental Variables
