@@ -69,6 +69,41 @@ pipeline {
                                 }
                                 }
 
+   stage ('Cleanup Artifacts') {
+            steps {
+                script {
+                    sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh "docker rmi ${IMAGE_NAME}:latest"
+                }
+            }
+        }
+   stage ('Updating kubernetes deployment file') {
+            steps {
+                script {
+                    sh """
+                    cat appdeploymentservice.yaml
+                    sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' appdeploymentservice.yaml
+                    cat appdeploymentservice.yaml
+                    """
+                }
+            }
+        }
+
+           stage ('Push the changed deployment file to Git ') {
+                    steps {
+                        script {
+                            sh """
+                            git config --global user.name "rihab1478"
+                            git config --global user.email "nabli.rihab@esprit.tn"
+                            git add appdeploymentservice.yaml
+                            git commit -m "updated the deployment file"
+                            """
+                            withCredentials([gitUsernamePassword(credentialsId: 'gitpwd', gitToolName: 'Default')]) {
+                           sh "git push https://github.com/rihab1478/Devsecops-java-aplication.git main "
+                            }
+                        }
+                    }
+                }
 
                                      }
        post {
