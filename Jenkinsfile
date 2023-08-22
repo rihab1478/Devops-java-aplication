@@ -99,7 +99,9 @@ pipeline {
                             git commit -m "updated the deployment file"
                             """
                             withCredentials([gitUsernamePassword(credentialsId: 'gitpwd', gitToolName: 'Default')]) {
-                           sh "git push https://github.com/rihab1478/Devsecops-java-aplication.git main "
+                          sh """
+                          git push https://github.com/rihab1478/Devsecops-java-aplication.git main
+                          """
                             }
                         }
                     }
