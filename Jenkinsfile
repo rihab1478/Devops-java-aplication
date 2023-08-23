@@ -95,7 +95,7 @@ pipeline {
                             git add appdeploymentservice.yaml
                             git commit -m "updated the deployment file"
                             """
-   withCredentials([gitUsernamePassword(credentialsId: '61b89e9c-29f9-44f3-8552-6913b6b94407', gitToolName: 'Default')]) {
+   withCredentials([gitUsernamePassword(credentialsId: 'gitpwd', gitToolName: 'Default')]) {
                          sh """
                           git checkout -b main
                           git push https://github.com/rihab1478/Devsecops-java-aplication.git main
