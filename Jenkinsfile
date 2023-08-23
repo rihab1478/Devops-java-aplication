@@ -95,8 +95,7 @@ pipeline {
                             git add appdeploymentservice.yaml
                             git commit -m "updated the deployment file"
                             """
-                         withCredentials([usernameColonPassword(credentialsId: '61b89e9c-29f9-44f3-8552-6913b6b94407', variable: '')]) {
-                          sh """
+withCredentials([gitUsernamePassword(credentialsId: '61b89e9c-29f9-44f3-8552-6913b6b94407', gitToolName: 'Default')]) {                          sh """
                           git push https://github.com/rihab1478/Devsecops-java-aplication.git origin:main
                           """
                             }
