@@ -55,7 +55,9 @@ pipeline {
                     steps{
                         withSonarQubeEnv('SonarServer') {
                             sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=java-devsecops-test\
-                            -Dsonar.projectKey=java-devsecops-test '''
+                            -Dsonar.projectKey=java-devsecops-test\
+                            -Dsonar.sources=src/main/java\
+                            -Dsonar.java.binaries=target/classes  '''
 
                         }
                     }
