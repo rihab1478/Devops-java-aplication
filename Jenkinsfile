@@ -97,7 +97,8 @@ pipeline {
                             """
    withCredentials([gitUsernamePassword(credentialsId: 'gitpwd', gitToolName: 'Default')]) {
                          sh """
-                          git push https://github.com/rihab1478/Devsecops-java-aplication.git main
+                          git checkout main
+                          git push https://github.com/rihab1478/Devsecops-java-aplication.git origin:main
                           """
                             }
                         }
