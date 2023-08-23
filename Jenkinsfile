@@ -95,7 +95,7 @@ pipeline {
                             git config --global user.email "nabli.rihab@esprit.tn"
                             git add appdeploymentservice.yaml
                             git commit -m "updated the deployment file"
-                            git push https://github.com/rihab1478/Devsecops-java-aplication.git origin main
+                            git push https://github.com/rihab1478/Devsecops-java-aplication.git origin:main
                           """
                             }
                         }
