@@ -89,15 +89,13 @@ pipeline {
            stage ('Push the changed deployment file to Git ') {
                     steps {
                         script {
+                           withCredentials([gitUsernamePassword(credentialsId: 'gitpwd', gitToolName: 'Default')]) {
                             sh """
                             git config --global user.name "rihab1478"
                             git config --global user.email "nabli.rihab@esprit.tn"
                             git add appdeploymentservice.yaml
                             git commit -m "updated the deployment file"
-                            """
-   withCredentials([gitUsernamePassword(credentialsId: 'gitpwd', gitToolName: 'Default')]) {
-                         sh """
-                          git checkout main
+                            git checkout main
                           git push https://github.com/rihab1478/Devsecops-java-aplication.git
                           """
                             }
