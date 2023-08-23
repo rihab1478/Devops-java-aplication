@@ -93,10 +93,10 @@ pipeline {
                             sh """
                             git config --global user.name "rihab1478"
                             git config --global user.email "nabli.rihab@esprit.tn"
+                            git checkout main
                             git add appdeploymentservice.yaml
                             git commit -m "updated the deployment file"
-                            git checkout main
-                          git push https://github.com/rihab1478/Devsecops-java-aplication.git
+                          git push https://github.com/rihab1478/Devsecops-java-aplication.git main
                           """
                             }
                         }
