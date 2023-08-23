@@ -97,7 +97,7 @@ pipeline {
                             """
                          withCredentials([usernameColonPassword(credentialsId: '61b89e9c-29f9-44f3-8552-6913b6b94407', variable: '')]) {
                           sh """
-                          git push https://github.com/rihab1478/Devsecops-java-aplication.git
+                          git push https://github.com/rihab1478/Devsecops-java-aplication.git origin:main
                           """
                             }
                         }
