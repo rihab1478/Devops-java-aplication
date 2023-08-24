@@ -13,7 +13,7 @@ spec:
         app: springboot-k8s-mysql
     spec:
       containers:
-        - name: devsecopsapplication:1.0.0-84
+        - name: devsecopsapplication
           image: rihab23/devsecopsapplication:1.0.0-84
           ports:
             - containerPort: 8080
