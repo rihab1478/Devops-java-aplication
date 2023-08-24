@@ -105,7 +105,8 @@ pipeline {
                 script {
                     sh """
                     cat appdeploymentservice.yaml
-                    sed -i 's/${DOCKER_HUB_USERNAME}.*/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' appdeploymentservice.yaml
+                    sed -i 's|\\${DOCKER_HUB_USERNAME}.*/\\${APP_NAME}.*/\\${APP_NAME}:${IMAGE_TAG}|${DOCKER_HUB_USERNAME}/${APP_NAME}:${IMAGE_TAG}|g' appdeploymentservice.yaml
+
                     cat appdeploymentservice.yaml
                     """
                 }
