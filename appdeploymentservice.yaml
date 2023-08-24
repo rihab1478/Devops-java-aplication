@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: devsecopsapplication
-          image: rihab23/devsecopsapplication:1.0.0-103
+          image: rihab23/devsecopsapplication:latest
           ports:
             - containerPort: 8080
           env:
