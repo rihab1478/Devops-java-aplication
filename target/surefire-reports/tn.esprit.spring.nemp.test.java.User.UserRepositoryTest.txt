@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: tn.esprit.spring.nemp.test.java.User.UserRepositoryTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 2.656 s - in tn.esprit.spring.nemp.test.java.User.UserRepositoryTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 7.88 s - in tn.esprit.spring.nemp.test.java.User.UserRepositoryTest
