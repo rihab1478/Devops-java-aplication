@@ -45,6 +45,8 @@ pipeline {
             post{
                 always{
                    junit '**/target/surefire-reports/TEST-*.xml'
+                    //junit testResults: 'results.xml', skipPublishingChecks: true
+
                 }
             }
 
@@ -98,6 +100,35 @@ pipeline {
                 }
             }
         }
+   stage ('Updating kubernetes deployment file') {
+            steps {
+                script {
+                    sh """
+                    cat appdeploymentservice.yaml
+            sed -i 's|${DOCKER_HUB_USERNAME}/${APP_NAME}:.*|${DOCKER_HUB_USERNAME}/${APP_NAME}:${IMAGE_TAG}|g' appdeploymentservice.yaml
+
+
+
+                    cat appdeploymentservice.yaml
+                    """
+                }
+            }
+        }
+
+           stage ('Push the changed deployment file to Git ') {
+                    steps {
+                        script {
+                           withCredentials([gitUsernamePassword(credentialsId: 'gitpwd', gitToolName: 'Default')]) {
+                            sh """
+                            git checkout main
+                            git add appdeploymentservice.yaml
+                            git commit -m "updated the deployment file"
+                            git push origin main
+                          """
+                            }
+                        }
+                    }
+                }
                           }
        post {
             failure {
