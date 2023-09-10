@@ -44,7 +44,7 @@ public class UserController {
     public  String index()
 
     {
-        return "hi and welcome to my Devsecops application video test ";
+        return "hi and welcome to my Devsecops application video test2 ";
     }
 
 }
